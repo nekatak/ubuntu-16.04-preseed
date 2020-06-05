@@ -6,10 +6,10 @@ d-i partman-auto/expert_recipe  string  multiraid ::  \
     method{ raid }			\
     $primary{ }					\
     .										\
-  64 512 300% raid      \
+  64 512 1000 raid      \
     method{ raid }      \
     .                   \
-  1000 3000 5000 raid   \
+  1000 3000 4000 raid   \
     method{ raid }			\
     primary{ }					\
     .
@@ -18,13 +18,13 @@ d-i partman-auto/expert_recipe  string  multiraid ::  \
 # <raidtype> <devcount> <sparecount> <fstype> <mountpoint> \
 #          <devices> <sparedevices>
 d-i partman-auto-raid/recipe string \
-    10 2 0 ext4  /boot                  \
+    10 2 0 ext4  /boot              \
           /dev/vda1#/dev/vdb1       \
     .																\
     1 2 0 swap -										\
           /dev/vda5#/dev/vdb5       \
 		.																\
-    10 2 0 ext4  /              \
+    10 2 0 ext4  /                  \
           /dev/vda6#/dev/vdb6       \
     .
 d-i partman-md/confirm boolean true
