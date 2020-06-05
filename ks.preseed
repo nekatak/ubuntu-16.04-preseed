@@ -1,6 +1,3 @@
-### Partitioning
-#
-
 ## Partitioning using RAID
 d-i partman-auto/method string raid
 d-i partman-auto/disk string /dev/vda /dev/vdb
@@ -24,6 +21,7 @@ d-i partman/confirm_nooverwrite boolean true
 d-i partman-md/confirm_nooverwrite boolean true
 d-i partman/mount_style select uuid
 d-i partman-md/confirm_nochanges boolean true
+d-i partman-basicfilesystems/no_swap boolean false
 
 # Locale
 d-i debian-installer/locale string en_US
