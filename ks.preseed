@@ -2,30 +2,36 @@
 d-i partman-auto/method string raid
 d-i partman-auto/disk string /dev/vda /dev/vdb
 d-i partman-auto/expert_recipe  string  multiraid ::  \
-  100 1000 1000 raid			\
-    method{ raid }			\
-    $primary{ }					\
-    .										\
+  100 1000 1000 raid    \
+    method{ raid }      \
+    $primary{ }         \
+    .                   \
   64 512 1000 raid      \
     method{ raid }      \
     .                   \
-  1000 3000 4000 raid   \
-    method{ raid }			\
-    primary{ }					\
+  1000 1001 5000 raid   \
+    method{ raid }      \
+    primary{ }          \
+    .                   \
+  100 2000 2000 raid    \
+    method{ raid }      \
     .
-	
+
 # Parameters are:
 # <raidtype> <devcount> <sparecount> <fstype> <mountpoint> \
 #          <devices> <sparedevices>
 d-i partman-auto-raid/recipe string \
     10 2 0 ext4  /boot              \
           /dev/vda1#/dev/vdb1       \
-    .																\
-    1 2 0 swap -										\
+    .                               \
+    1 2 0 swap -                    \
           /dev/vda5#/dev/vdb5       \
-		.																\
-    10 2 0 ext4  /                  \
+    .                               \
+    10 2 0 ext4  /var/dontuse       \
           /dev/vda6#/dev/vdb6       \
+    .                               \
+    10 2 0 ext4  /                  \
+          /dev/vda7#/dev/vdb7       \
     .
 d-i partman-md/confirm boolean true
 d-i partman-partitioning/confirm_write_new_label boolean true
