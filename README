@@ -1,0 +1,21 @@
+### Preseeding of ubuntu 16.04 server iso
+
+http://releases.ubuntu.com/16.04/ubuntu-16.04.6-server-amd64.iso
+
+Folders included here need to be copied in the unpacked iso. 
+
+Unpack iso with this command:
+```bash
+xorriso -osirrox on -indev ubuntu-18.04.3-live-server-amd64.iso -extract / iso-dir
+```
+
+Remaster iso:
+```bash
+cd iso-dir/
+sudo genisoimage -r -J -b isolinux/isolinux.bin -c isolinux/boot.cat  -no-emul-boot -boot-load-size 4 -boot-info-table -o ~/ubuntu-16.04-server-preseeded.iso ./
+```
+
+
+#### Partitioning
+
+Testing raid and raid/lvm partitioning. Successful attempts have resulting output of `lsblk` in the commit.
