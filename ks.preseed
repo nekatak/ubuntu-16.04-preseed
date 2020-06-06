@@ -12,6 +12,9 @@ d-i partman-auto/expert_recipe  string  multiraid ::  \
   2000 2000 2000 raid   \
     method{ raid }      \
     .                   \
+  2000 2000 2000 raid   \
+    method{ raid }      \
+    .                   \
   1 1 -1 raid           \
     method{ raid }      \
     .
@@ -29,8 +32,11 @@ d-i partman-auto-raid/recipe string \
     10 2 0 ext4  /var/dontuse       \
           /dev/vda6#/dev/vdb6       \
     .                               \
-    10 2 0 ext4  /                  \
+    10 2 0 ext4  /var/dontuse-2     \
           /dev/vda7#/dev/vdb7       \
+    .                               \
+    10 2 0 ext4  /                  \
+          /dev/vda8#/dev/vdb8       \
     .
 d-i partman-md/confirm boolean true
 d-i partman-partitioning/confirm_write_new_label boolean true
