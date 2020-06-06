@@ -3,20 +3,49 @@ d-i partman-auto/method string raid
 d-i partman-auto/disk string /dev/vda /dev/vdb
 d-i partman-auto/expert_recipe  string  multiraid ::  \
   1000 1000 1000 raid   \
+    $lvmignore{ }       \
     method{ raid }      \
     $primary{ }         \
     .                   \
-  1000 1000 1000 raid   \
-    method{ raid }      \
-    .                   \
-  2000 2000 2000 raid   \
-    method{ raid }      \
-    .                   \
-  2000 2000 2000 raid   \
-    method{ raid }      \
-    .                   \
   1 1 -1 raid           \
     method{ raid }      \
+    $lvmignore{ }       \
+    .                   \
+  1000 1000 1000  linux-swap  \
+    method{ swap }      \
+    $defaultignore{ }   \
+    $lvmok{ }           \
+    format{ }           \
+    .                   \
+  2000 2000 2000 ext4   \
+    $defaultignore{ }   \
+    $lvmok{ }           \
+    lv_name{ dont1 }    \
+    method{ format }    \
+    format{ }           \
+    use_filesystem{ }   \
+    filesystem{ ext4 }  \
+    mountpoint{ /var/dont1 } \
+    .                   \
+  2000 2000 2000 ext4   \
+    $defaultignore{ }   \
+    $lvmok{ }           \
+    lv_name{ dont2 }    \
+    method{ format }    \
+    format{ }           \
+    use_filesystem{ }   \
+    filesystem{ ext4 }  \
+    mountpoint{ /var/dont2 } \
+    .                   \
+  1 1 -1 ext4           \
+    $defaultignore{ }   \
+    $lvmok{ }           \
+    lv_name{ root }     \
+    method{ format }    \
+    format{ }           \
+    use_filesystem{ }   \
+    filesystem{ ext4 }  \
+    mountpoint{ / }     \
     .
 
 # Parameters are:
@@ -26,17 +55,8 @@ d-i partman-auto-raid/recipe string \
     10 2 0 ext4  /boot              \
           /dev/vda1#/dev/vdb1       \
     .                               \
-    1 2 0 swap -                    \
-          /dev/vda5#/dev/vdb5       \
-    .                               \
-    10 2 0 ext4  /var/dontuse       \
-          /dev/vda6#/dev/vdb6       \
-    .                               \
-    10 2 0 ext4  /var/dontuse-2     \
-          /dev/vda7#/dev/vdb7       \
-    .                               \
-    10 2 0 ext4  /                  \
-          /dev/vda8#/dev/vdb8       \
+    1 2 0 lvm -	                    \
+		/dev/vda5#/dev/vdb5             \
     .
 d-i partman-md/confirm boolean true
 d-i partman-partitioning/confirm_write_new_label boolean true
