@@ -9,12 +9,12 @@ d-i partman-auto/expert_recipe  string  multiraid ::  \
   64 512 1000 raid      \
     method{ raid }      \
     .                   \
+  100 2000 3000 raid    \
+    method{ raid }      \
+    .                   \
   1000 1001 5000 raid   \
     method{ raid }      \
     primary{ }          \
-    .                   \
-  100 2000 2000 raid    \
-    method{ raid }      \
     .
 
 # Parameters are:
