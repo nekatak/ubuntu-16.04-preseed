@@ -100,7 +100,7 @@ d-i apt-setup/multiverse boolean true
 d-i apt-setup/restricted boolean true
 d-i apt-setup/universe boolean true
 d-i pkgsel/update-policy select unattended-upgrades
-d-i tasksel/first multiselect standard openssh-server
+d-i pkgsel/include string openssh-server
 
 # Users
 d-i passwd/user-fullname string User
@@ -117,3 +117,7 @@ d-i user-setup/allow-password-weak boolean true
 d-i grub-installer/grub2_instead_of_grub_legacy boolean true
 d-i grub-installer/only_debian boolean true
 d-i finish-install/reboot_in_progress note
+
+# Power off when done
+d-i finish-install/reboot_in_progress note
+d-i debian-installer/exit/poweroff boolean true
