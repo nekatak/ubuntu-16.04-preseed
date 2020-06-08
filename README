@@ -15,6 +15,12 @@ cd iso-dir/
 sudo genisoimage -r -J -b isolinux/isolinux.bin -c isolinux/boot.cat  -no-emul-boot -boot-load-size 4 -boot-info-table -o ~/ubuntu-16.04-server-preseeded.iso ./
 ```
 
+In order to be able to boot with modern UEFI and legacy BIOS firmware remaster the iso with the following command:
+```bash
+sudo xorriso -as mkisofs -r -V "Custom Ubuntu Install CD" -cache-inodes -J -l -isohybrid-mbr boot/grub/efi.img -c isolinux/boot.cat -b isolinux/isolinux.bin  -no-emul-boot -boot-load-size 4 -boot-info-table -eltorito-alt-boot -e boot/grub/efi.img -no-emul-boot -isohybrid-gpt-basdat -o /home/nektarios/bionic-preseeded-iso-hybrid.iso ./
+```
+Detailed explanation here: https://help.ubuntu.com/community/InstallCDCustomization
+
 
 #### Partitioning
 
