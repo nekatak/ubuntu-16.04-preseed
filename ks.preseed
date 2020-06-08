@@ -76,7 +76,17 @@ d-i console-setup/layoutcode string us
 # Network
 d-i netcfg/get_hostname string unassigned-hostname
 d-i netcfg/get_domain string unassigned-domain
-d-i netcfg/choose_interface select auto
+d-i netcfg/enable boolean true
+d-i netcfg/choose_interface select enp1s0
+d-i netcfg/disable_autoconfig boolean true
+d-i netcfg/get_ipaddress string 192.168.122.100
+d-i netcfg/get_netmask string 255.255.255.0
+d-i netcfg/get_gateway string 192.168.122.1
+d-i netcfg/get_nameservers string 9.9.9.9
+d-i netcfg/confirm_static boolean true
+
+# non-free firmware
+d-i hw-detect/load_firmware boolean true
 
 # Clock
 d-i clock-setup/utc-auto boolean true
@@ -89,6 +99,8 @@ d-i mirror/country string US
 d-i apt-setup/multiverse boolean true
 d-i apt-setup/restricted boolean true
 d-i apt-setup/universe boolean true
+d-i pkgsel/update-policy select unattended-upgrades
+d-i tasksel/first multiselect standard openssh-server
 
 # Users
 d-i passwd/user-fullname string User
