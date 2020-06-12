@@ -1,6 +1,7 @@
-### Preseeding of ubuntu 16.04 server iso
+### Preseeding of ubuntu 16.04, 18.04 server iso
 
 http://releases.ubuntu.com/16.04/ubuntu-16.04.6-server-amd64.iso
+http://cdimage.ubuntu.com/ubuntu-server/bionic/daily/current/bionic-server-amd64.iso
 
 Folders included here need to be copied in the unpacked iso. 
 
